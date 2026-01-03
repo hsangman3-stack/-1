@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { HashRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './components/Home';
 import Admin from './components/Admin';
 import { NAV_ITEMS } from './constants';
@@ -79,16 +79,11 @@ const Footer: React.FC = () => (
   <footer className="bg-stone-50 py-16 border-t border-stone-200 text-stone-600">
     <div className="container mx-auto px-6 grid md:grid-cols-4 gap-12">
       <div className="col-span-1 md:col-span-2">
-        <h3 className="text-2xl font-bold text-emerald-900 mb-6">청안 한의원</h3>
+        <h3 className="text-2xl font-bold text-emerald-900 mb-4">청안 한의원</h3>
         <p className="max-w-md mb-6 leading-relaxed">
           한 사람의 생명을 소중히 여기는 마음으로, <br />
           환자 중심의 세심한 진료와 정성을 다하는 명품 한의원입니다.
         </p>
-        <div className="flex gap-4">
-          <a href="#" className="w-10 h-10 rounded-full bg-stone-200 flex items-center justify-center hover:bg-emerald-800 hover:text-white transition-all">
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          </a>
-        </div>
       </div>
       <div>
         <h4 className="text-stone-900 font-bold mb-6">메뉴</h4>
