@@ -62,7 +62,7 @@ const Admin: React.FC = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-stone-100 px-4">
         <form onSubmit={handleLogin} className="bg-white p-8 rounded-lg shadow-xl w-full max-w-md">
-          <h2 className="text-2xl font-bold mb-6 text-center serif text-emerald-900">관리자 로그인</h2>
+          <h2 className="text-2xl font-bold mb-6 text-center text-emerald-900">관리자 로그인</h2>
           <div className="mb-4">
             <label className="block text-sm font-medium text-stone-700 mb-2">비밀번호</label>
             <input 
@@ -85,7 +85,7 @@ const Admin: React.FC = () => {
     <div className="min-h-screen bg-stone-50 py-12">
       <div className="container mx-auto px-6">
         <div className="flex justify-between items-center mb-12">
-          <h1 className="text-3xl font-bold serif text-emerald-900">포트폴리오(진료 항목) 관리</h1>
+          <h1 className="text-3xl font-bold text-emerald-900">포트폴리오(진료 항목) 관리</h1>
           <button 
             onClick={() => setEditingItem({ id: '', title: '', description: '', imageUrl: '' })}
             className="bg-emerald-800 text-white px-6 py-2 rounded hover:bg-emerald-900"

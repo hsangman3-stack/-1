@@ -21,7 +21,7 @@ const Navbar: React.FC = () => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-md py-3' : 'bg-transparent py-5'}`}>
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <Link to="/" className={`text-2xl font-bold serif transition-colors ${isScrolled ? 'text-emerald-900' : 'text-white'}`}>
+        <Link to="/" className={`text-2xl font-bold transition-colors ${isScrolled ? 'text-emerald-900' : 'text-white'}`}>
           청안 한의원
         </Link>
         
@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
             <Link 
               key={item.path} 
               to={item.path} 
-              className={`text-sm font-medium transition-colors hover:text-emerald-500 ${isScrolled ? 'text-stone-700' : 'text-stone-200'}`}
+              className={`text-sm font-medium tracking-tight transition-colors hover:text-emerald-500 ${isScrolled ? 'text-stone-700' : 'text-stone-200'}`}
             >
               {item.label}
             </Link>
@@ -79,7 +79,7 @@ const Footer: React.FC = () => (
   <footer className="bg-stone-50 py-16 border-t border-stone-200 text-stone-600">
     <div className="container mx-auto px-6 grid md:grid-cols-4 gap-12">
       <div className="col-span-1 md:col-span-2">
-        <h3 className="text-2xl font-bold text-emerald-900 serif mb-6">청안 한의원</h3>
+        <h3 className="text-2xl font-bold text-emerald-900 mb-6">청안 한의원</h3>
         <p className="max-w-md mb-6 leading-relaxed">
           한 사람의 생명을 소중히 여기는 마음으로, <br />
           환자 중심의 세심한 진료와 정성을 다하는 명품 한의원입니다.
@@ -121,11 +121,11 @@ const App: React.FC = () => {
             <Route path="/" element={<Home />} />
             <Route path="/admin" element={<Admin />} />
             {/* Generic pages for demo structure */}
-            <Route path="/tour" element={<div className="py-40 text-center text-3xl serif">둘러보기 페이지 (준비중)</div>} />
-            <Route path="/treatments" element={<div className="py-40 text-center text-3xl serif">주요 진료 페이지 (준비중)</div>} />
-            <Route path="/therapy" element={<div className="py-40 text-center text-3xl serif">한방 요법 페이지 (준비중)</div>} />
-            <Route path="/community" element={<div className="py-40 text-center text-3xl serif">커뮤니티 페이지 (준비중)</div>} />
-            <Route path="/reserve" element={<div className="py-40 text-center text-3xl serif">예약하기 페이지 (준비중)</div>} />
+            <Route path="/tour" element={<div className="py-40 text-center text-3xl">둘러보기 페이지 (준비중)</div>} />
+            <Route path="/treatments" element={<div className="py-40 text-center text-3xl">주요 진료 페이지 (준비중)</div>} />
+            <Route path="/therapy" element={<div className="py-40 text-center text-3xl">한방 요법 페이지 (준비중)</div>} />
+            <Route path="/community" element={<div className="py-40 text-center text-3xl">커뮤니티 페이지 (준비중)</div>} />
+            <Route path="/reserve" element={<div className="py-40 text-center text-3xl">예약하기 페이지 (준비중)</div>} />
           </Routes>
         </main>
         <Footer />

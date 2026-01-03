@@ -28,7 +28,7 @@ const Home: React.FC = () => {
           />
         </div>
         <div className="container mx-auto px-6 relative z-10 text-white">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight serif">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
             몸의 균형을 찾아 <br /> 내일을 찾으세요, <span className="text-emerald-400">청안 한의원</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 font-light text-stone-200">
@@ -52,7 +52,7 @@ const Home: React.FC = () => {
             title="청안 한의원의 약속" 
             subtitle="환자 한 분 한 분을 위한 진심 어린 진료를 약속합니다."
           />
-          <div className="grid md:grid-grid-cols-1 lg:grid-cols-3 gap-12">
+          <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow border-t-4 border-emerald-800">
               <div className="w-12 h-12 bg-emerald-100 text-emerald-800 rounded-full flex items-center justify-center mb-6">
                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
