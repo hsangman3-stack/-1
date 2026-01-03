@@ -10,7 +10,7 @@ const Admin: React.FC = () => {
   const [editingItem, setEditingItem] = React.useState<TreatmentItem | null>(null);
 
   React.useEffect(() => {
-    const saved = localStorage.getItem('clinic_treatments');
+    const saved = localStorage.getItem('pet_center_services');
     if (saved) {
       setTreatments(JSON.parse(saved));
     } else {
@@ -28,7 +28,7 @@ const Admin: React.FC = () => {
   };
 
   const saveToLocal = (items: TreatmentItem[]) => {
-    localStorage.setItem('clinic_treatments', JSON.stringify(items));
+    localStorage.setItem('pet_center_services', JSON.stringify(items));
     setTreatments(items);
   };
 
@@ -48,7 +48,7 @@ const Admin: React.FC = () => {
     if (!editingItem) return;
 
     let updated;
-    if (treatments.find(t => t.id === editingItem.id)) {
+    if (editingItem.id && treatments.find(t => t.id === editingItem.id)) {
       updated = treatments.map(t => t.id === editingItem.id ? editingItem : t);
     } else {
       updated = [...treatments, { ...editingItem, id: Date.now().toString() }];
@@ -61,20 +61,20 @@ const Admin: React.FC = () => {
   if (!isAuthorized) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-stone-100 px-4">
-        <form onSubmit={handleLogin} className="bg-white p-8 rounded-lg shadow-xl w-full max-w-md">
-          <h2 className="text-2xl font-bold mb-6 text-center text-emerald-900">관리자 로그인</h2>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-stone-700 mb-2">비밀번호</label>
+        <form onSubmit={handleLogin} className="bg-white p-10 rounded-3xl shadow-xl w-full max-w-md">
+          <h2 className="text-3xl font-bold mb-8 text-center text-emerald-900">Admin Login</h2>
+          <div className="mb-6">
+            <label className="block text-sm font-medium text-stone-500 mb-2 ml-1">Password</label>
             <input 
               type="password" 
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full border p-3 rounded focus:ring-2 focus:ring-emerald-500 outline-none" 
+              className="w-full border-2 border-stone-100 p-4 rounded-2xl focus:border-emerald-500 outline-none transition-all" 
               placeholder="1111"
             />
           </div>
-          <button type="submit" className="w-full bg-emerald-800 text-white py-3 rounded font-bold hover:bg-emerald-900 transition-colors">
-            로그인
+          <button type="submit" className="w-full bg-emerald-800 text-white py-4 rounded-2xl font-bold hover:bg-emerald-900 transition-colors shadow-lg">
+            접속하기
           </button>
         </form>
       </div>
@@ -82,57 +82,60 @@ const Admin: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-stone-50 py-12">
+    <div className="min-h-screen bg-stone-50 py-20">
       <div className="container mx-auto px-6">
-        <div className="flex justify-between items-center mb-12">
-          <h1 className="text-3xl font-bold text-emerald-900">포트폴리오(진료 항목) 관리</h1>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
+          <div>
+            <h1 className="text-3xl font-bold text-stone-800 mb-2">서비스 관리자</h1>
+            <p className="text-stone-500">메인 화면에 표시될 케어 서비스 항목을 관리합니다.</p>
+          </div>
           <button 
             onClick={() => setEditingItem({ id: '', title: '', description: '', imageUrl: '' })}
-            className="bg-emerald-800 text-white px-6 py-2 rounded hover:bg-emerald-900"
+            className="bg-emerald-800 text-white px-8 py-3 rounded-full font-bold hover:bg-emerald-900 shadow-md transition-all"
           >
-            항목 추가
+            서비스 추가
           </button>
         </div>
 
         {editingItem && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <form onSubmit={handleSaveEdit} className="bg-white p-8 rounded-xl shadow-2xl w-full max-w-lg">
-              <h3 className="text-xl font-bold mb-6">진료 항목 편집</h3>
-              <div className="space-y-4">
+          <div className="fixed inset-0 bg-stone-900/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+            <form onSubmit={handleSaveEdit} className="bg-white p-10 rounded-3xl shadow-2xl w-full max-w-lg">
+              <h3 className="text-2xl font-bold mb-8 text-stone-800">서비스 편집</h3>
+              <div className="space-y-6">
                 <div>
-                  <label className="block text-sm font-medium mb-1">진료 명칭</label>
+                  <label className="block text-sm font-bold text-stone-500 mb-2">서비스 명칭</label>
                   <input 
                     type="text" 
                     value={editingItem.title}
                     onChange={e => setEditingItem({...editingItem, title: e.target.value})}
-                    className="w-full border p-2 rounded"
+                    className="w-full border-2 border-stone-100 p-3 rounded-xl outline-none focus:border-emerald-500"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-1">설명</label>
+                  <label className="block text-sm font-bold text-stone-500 mb-2">상세 설명</label>
                   <textarea 
                     value={editingItem.description}
                     onChange={e => setEditingItem({...editingItem, description: e.target.value})}
-                    className="w-full border p-2 rounded h-24"
+                    className="w-full border-2 border-stone-100 p-3 rounded-xl h-32 outline-none focus:border-emerald-500"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-1">이미지 URL</label>
+                  <label className="block text-sm font-bold text-stone-500 mb-2">이미지 URL (Unsplash 등)</label>
                   <input 
                     type="text" 
                     value={editingItem.imageUrl}
                     onChange={e => setEditingItem({...editingItem, imageUrl: e.target.value})}
-                    className="w-full border p-2 rounded"
-                    placeholder="https://..."
+                    className="w-full border-2 border-stone-100 p-3 rounded-xl outline-none focus:border-emerald-500"
+                    placeholder="https://images.unsplash.com/..."
                     required
                   />
                 </div>
               </div>
-              <div className="mt-8 flex gap-4">
-                <button type="button" onClick={() => setEditingItem(null)} className="flex-1 border py-2 rounded hover:bg-stone-50">취소</button>
-                <button type="submit" className="flex-1 bg-emerald-800 text-white py-2 rounded hover:bg-emerald-900 font-bold">저장</button>
+              <div className="mt-10 flex gap-4">
+                <button type="button" onClick={() => setEditingItem(null)} className="flex-1 bg-stone-100 text-stone-500 py-3 rounded-xl hover:bg-stone-200 transition-colors">취소</button>
+                <button type="submit" className="flex-1 bg-emerald-800 text-white py-3 rounded-xl hover:bg-emerald-900 font-bold transition-colors">저장 완료</button>
               </div>
             </form>
           </div>
@@ -140,15 +143,15 @@ const Admin: React.FC = () => {
 
         <div className="grid gap-6">
           {treatments.map(item => (
-            <div key={item.id} className="bg-white p-6 rounded-lg shadow-sm border border-stone-200 flex flex-col md:flex-row gap-6 items-center">
-              <img src={item.imageUrl} alt={item.title} className="w-32 h-24 object-cover rounded shadow" />
+            <div key={item.id} className="bg-white p-6 rounded-3xl shadow-sm border border-stone-100 flex flex-col md:flex-row gap-8 items-center">
+              <img src={item.imageUrl} alt={item.title} className="w-40 h-32 object-cover rounded-2xl shadow" />
               <div className="flex-1">
-                <h4 className="text-xl font-bold text-emerald-900">{item.title}</h4>
-                <p className="text-stone-500 mt-1">{item.description}</p>
+                <h4 className="text-xl font-bold text-stone-800 mb-2">{item.title}</h4>
+                <p className="text-stone-500 leading-relaxed line-clamp-2">{item.description}</p>
               </div>
-              <div className="flex gap-2">
-                <button onClick={() => handleEdit(item)} className="px-4 py-2 border border-emerald-800 text-emerald-800 rounded hover:bg-emerald-50 transition-colors">편집</button>
-                <button onClick={() => handleDelete(item.id)} className="px-4 py-2 bg-rose-50 text-rose-600 rounded hover:bg-rose-100 transition-colors">삭제</button>
+              <div className="flex gap-3">
+                <button onClick={() => handleEdit(item)} className="px-6 py-2 border-2 border-emerald-800 text-emerald-800 font-bold rounded-full hover:bg-emerald-50 transition-colors">편집</button>
+                <button onClick={() => handleDelete(item.id)} className="px-6 py-2 bg-rose-50 text-rose-600 font-bold rounded-full hover:bg-rose-100 transition-colors">삭제</button>
               </div>
             </div>
           ))}
